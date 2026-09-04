@@ -7,15 +7,34 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6f8; color: #333; }
-        header { background: #003580; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
-        header h1 { font-size: 1.8rem; }
-        nav a { color: white; text-decoration: none; margin-left: 1.5rem; font-weight: 500; }
-        .hero { background: linear-gradient(rgba(0, 53, 128, 0.7), rgba(0, 53, 128, 0.7)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; padding: 5rem 1rem; text-align: center; }
+        
+        /* Navigation & Top Bar Header */
+        header { background: #003580; color: white; padding: 0.8rem 4%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        header h1 { font-size: 1.6rem; color: #fff; text-decoration: none; font-weight: bold; }
+        
+        /* Navigation Menu Links */
+        nav { display: flex; align-items: center; }
+        nav a { color: #f2f2f2; text-decoration: none; padding: 0.5rem 0.8rem; font-weight: 500; font-size: 0.9rem; transition: background 0.2s, color 0.2s; border-radius: 4px; }
+        nav a:hover { background: rgba(255, 255, 255, 0.15); color: #ffb700; }
+        
+        /* Dropdown Styling */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { color: #f2f2f2; padding: 0.5rem 0.8rem; font-weight: 500; font-size: 0.9rem; border: none; background: none; cursor: pointer; display: flex; align-items: center; gap: 4px; border-radius: 4px; }
+        .dropdown-btn:hover { background: rgba(255, 255, 255, 0.15); color: #ffb700; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #ffffff; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); border-radius: 6px; overflow: hidden; z-index: 1001; }
+        .dropdown-content a { color: #333333; padding: 0.75rem 1rem; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:hover { background-color: #f4f6f8; color: #003580; }
+        .dropdown:hover .dropdown-content { display: block; }
+        
+        /* Hero Section */
+        .hero { background: linear-gradient(rgba(0, 53, 128, 0.75), rgba(0, 53, 128, 0.75)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; padding: 5rem 1rem; text-align: center; }
         .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; }
         .search-box { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; background: white; padding: 10px; border-radius: 8px; }
         .search-box input { flex: 1; border: 1px solid #ccc; padding: 0.8rem; border-radius: 5px; font-size: 1rem; }
         .search-box button { background: #ffb700; color: #003580; border: none; padding: 0.8rem 1.5rem; font-weight: bold; cursor: pointer; border-radius: 5px; }
+
+        /* Content Grid */
         .deals { padding: 4rem 5%; text-align: center; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
         .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: left; }
@@ -23,21 +42,46 @@
         .card-content { padding: 1.5rem; }
         .card-content h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
         .card-content p { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
-        .btn-book { display: inline-block; background: #003580; color: white; text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 5px; font-size: 0.9rem; }
+        .btn-book { display: inline-block; background: #003580; color: white; text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 5px; font-size: 0.9rem; font-weight: 500; }
+        .btn-book:hover { background: #002253; }
+        
         footer { background: #1a1a1a; color: white; text-align: center; padding: 2rem; margin-top: 3rem; }
     </style>
 </head>
 <body>
+
+    <!-- Header Navigation with Top 10 + Others Dropdown -->
     <header>
         <h1>PulseTrips</h1>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Stays</a>
-            <a href="#">Deals</a>
-            <a href="#">Contact</a>
+            <a href="#">Hotels</a>
+            <a href="#">Resorts</a>
+            <a href="#">Villas</a>
+            <a href="#">Apartments</a>
+            <a href="#">Flights</a>
+            <a href="#">Car Rentals</a>
+            <a href="#">Luxury Stays</a>
+            <a href="#">Beach Resorts</a>
+            <a href="#">City Breaks</a>
+            <a href="#">Last-Minute Deals</a>
+            
+            <!-- Others Dropdown Menu -->
+            <div class="dropdown">
+                <button class="dropdown-btn">Others &#9662;</button>
+                <div class="dropdown-content">
+                    <a href="#">Hostels</a>
+                    <a href="#">Cabins & Cottages</a>
+                    <a href="#">All-Inclusive</a>
+                    <a href="#">Glamping</a>
+                    <a href="#">Airport Taxis</a>
+                    <a href="#">Travel Blog</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <h2>Find Your Next Perfect Stay</h2>
         <p>Discover luxury hotels, budget rooms, and exclusive travel deals worldwide.</p>
@@ -47,6 +91,7 @@
         </div>
     </section>
 
+    <!-- Popular Deals Grid -->
     <section class="deals">
         <h2>Popular Travel Destinations</h2>
         <div class="grid">
@@ -80,5 +125,6 @@
     <footer>
         <p>&copy; 2026 PulseTrips. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
