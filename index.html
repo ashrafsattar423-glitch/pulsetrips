@@ -1,194 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="ltr">
 <head>
-    <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
-  (function () {
-      var script = document.createElement("script");
-      script.async = 1;
-      script.setAttribute("data-cmp-ab","2");
-      script.src = 'https://tp-em.com/NTcwNDM4.js?t=570438';
-      document.head.appendChild(script);
-  })();
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PulseTrips - Discover & Book Exceptional Stays Worldwide</title>
-    
-    <!-- Impact.com Site Verification Tag -->
-    <meta name='impact-site-verification' value='2b1c1de8-5b6f-415c-bbf9-566401aff0fe'>
+    <title>PulseTrips - Luxury Travel & Lifestyle</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Travelpayouts Verification Script Start -->
+    <script nowprocket='nowprocket' data-noptimize='1' data-cfasync='false' data-wpfc-render='false' seraph-accel-crit='1' data-no-defer='1' data-cmp-ab='2'>
+      (function () {
+          var script = document.createElement("script");
+          script.async = 1;
+          script.setAttribute("data-cmp-ab","2");
+          script.src = 'https://tp-em.com/NTcwNDM4.js?t=570438';
+          document.head.appendChild(script);
+      })();
+    </script>
+    <!-- Travelpayouts Verification Script End -->
+
     <style>
-        .hero-bg {
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
+        /* Base Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Top Header */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d4af37; /* Luxury Gold */
+            text-decoration: none;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 50px;
+        }
+
+        .menu-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item {
+            position: relative;
+        }
+
+        .menu-item a {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .menu-item a:hover {
+            color: #d4af37;
+        }
+
+        /* "Others" Dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .menu-item:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Content Area */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+<body>
 
-    <!-- Premium Top Navigation Header -->
-    <header class="bg-slate-900/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-xl border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                
-                <!-- Brand Logo -->
-                <a href="/" class="flex items-center space-x-3 group">
-                    <div class="w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-200">
-                        <i class="fa-solid fa-plane-departure text-xl"></i>
-                    </div>
-                    <span class="text-2xl font-black tracking-tight text-white">Pulse<span class="text-blue-400">Trips</span></span>
-                </a>
-
-                <!-- Navigation Menu (Top 10 + Others Dropdown) -->
-                <nav class="hidden xl:flex items-center space-x-1 text-xs font-semibold text-slate-300">
-                    <a href="#hotels" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Hotels</a>
-                    <a href="#resorts" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Resorts</a>
-                    <a href="#villas" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Villas</a>
-                    <a href="#apartments" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Apartments</a>
-                    <a href="#luxury" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Luxury Stays</a>
-                    <a href="#beach" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Beach Resorts</a>
-                    <a href="#cabins" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Cabins</a>
-                    <a href="#glamping" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Glamping</a>
-                    <a href="#hostels" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Hostels</a>
-                    <a href="#budget" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Budget Stays</a>
-
-                    <!-- Others Dropdown -->
-                    <div class="relative group">
-                        <button class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5 focus:outline-none">
-                            <span>Others</span>
-                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
-                        </button>
-                        <div class="absolute right-0 mt-1 w-52 bg-slate-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/80 py-2 hidden group-hover:block transition-all duration-200">
-                            <a href="#motels" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Motels</a>
-                            <a href="#bed-breakfast" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Bed & Breakfast</a>
-                            <a href="#vacation-homes" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Vacation Homes</a>
-                            <a href="#guesthouses" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Guesthouses</a>
-                        </div>
-                    </div>
-                </nav>
-
-                <!-- Search Deals Header CTA Button -->
-                <div>
-                    <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/25 transition duration-200 flex items-center space-x-2 transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                        <span>Find Accommodation</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <!-- Header Section -->
+    <header>
+        <a href="#" class="logo">PulseTrips</a>
     </header>
 
-    <!-- Main Hero Banner Section -->
-    <main class="flex-grow">
-        <section class="hero-bg py-24 md:py-32 px-4 relative flex items-center justify-center">
-            <div class="max-w-4xl mx-auto text-center">
-                <span class="inline-flex items-center space-x-2 bg-blue-500/20 text-blue-300 border border-blue-400/30 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold mb-6 backdrop-blur-md">
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <span>Verified Accommodation Recommendations</span>
-                </span>
-                <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight mb-6">
-                    Find & Book Unforgettable Stays Worldwide
-                </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Compare luxury hotels, cozy beachfront resorts, budget stays, and private villas with instant booking availability.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-xl text-base shadow-xl shadow-blue-600/30 transition duration-200 flex items-center justify-center space-x-3">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        <span>Search Booking Deals</span>
-                    </a>
+    <!-- Navigation Bar (Top 10 Categories + Others Dropdown) -->
+    <nav>
+        <ul class="menu-list">
+            <li class="menu-item"><a href="#">Home</a></li>
+            <li class="menu-item"><a href="#">Luxury Hotels</a></li>
+            <li class="menu-item"><a href="#">Flight Deals</a></li>
+            <li class="menu-item"><a href="#">Car Rentals</a></li>
+            <li class="menu-item"><a href="#">Vacation Rentals</a></li>
+            <li class="menu-item"><a href="#">Cruises</a></li>
+            <li class="menu-item"><a href="#">Travel Insurance</a></li>
+            <li class="menu-item"><a href="#">Tours & Activities</a></li>
+            <li class="menu-item"><a href="#">Destination Guides</a></li>
+            <li class="menu-item"><a href="#">Lifestyle & Gear</a></li>
+            
+            <!-- Remaining Categories in Dropdown -->
+            <li class="menu-item">
+                <a href="#">Others &#9662;</a>
+                <div class="dropdown-content">
+                    <a href="#">Solo Travel</a>
+                    <a href="#">Budget Travel</a>
+                    <a href="#">Honeymoon Packages</a>
+                    <a href="#">Travel Blog</a>
                 </div>
-            </div>
-        </section>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Categories & Accommodation Showcase -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-slate-900">Featured Categories</h2>
-                <p class="text-slate-500 mt-2">Explore handpicked accommodation options tailored to your travel needs</p>
-            </div>
+    <!-- Main Content Placeholder -->
+    <div class="container">
+        <h1>Welcome to PulseTrips</h1>
+        <p>Your portal to luxury travel, seamless bookings, and curated lifestyle experiences.</p>
+    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Hotels" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Luxury Hotels</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Handpicked city hotels with premium comfort and amenities.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Resorts" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Beach Resorts</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Relaxing waterfront stays and high-end seaside holiday resorts.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Villas" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Private Villas</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Spacious holiday houses ideal for group travel and families.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80" alt="Cabins" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Cabins & Glamping</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Unique nature getaways with serene views and comfort.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Section -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-            <div class="flex items-center justify-center space-x-2 text-white text-xl font-bold">
-                <i class="fa-solid fa-plane-departure text-blue-500"></i>
-                <span>PulseTrips</span>
-            </div>
-            <p class="text-sm text-slate-500 max-w-md mx-auto">
-                PulseTrips is a travel recommendation portal helping travelers discover curated hotels, resorts, and stays globally.
-            </p>
-            <div class="text-xs text-slate-600 border-t border-slate-800/80 pt-6">
-                &copy; 2026 PulseTrips. All rights reserved.
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 PulseTrips. All Rights Reserved.</p>
     </footer>
 
 </body>
