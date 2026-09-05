@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PulseTrips - Discover & Book Exceptional Stays Worldwide</title>
+    <title>PulseTrips - Compare & Book Flights, eSIMs, Cars & Attractions</title>
     
     <!-- Impact.com Site Verification Tag -->
     <meta name='impact-site-verification' value='2b1c1de8-5b6f-415c-bbf9-566401aff0fe'>
@@ -30,158 +30,414 @@
 
     <!-- Tailwind CSS & Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        html { scroll-behavior: smooth; }
         .hero-bg {
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.95) 100%), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
 
-    <!-- Premium Top Navigation Header -->
-    <header class="bg-slate-900/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-xl border-b border-slate-800">
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-500 text-white text-xs py-2 px-4 text-center font-medium tracking-wide shadow-md">
+        <span class="inline-flex items-center gap-2">
+            <span class="animate-pulse bg-emerald-400 text-slate-950 text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full">Exclusive Deal</span>
+            Save up to 40% on Global Flight Deals & Travel eSIM Plans Today!
+        </span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="bg-slate-900/90 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
                 <!-- Brand Logo -->
-                <a href="/" class="flex items-center space-x-3 group">
-                    <div class="w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-200">
-                        <i class="fa-solid fa-plane-departure text-xl"></i>
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-indigo-500 via-blue-600 to-emerald-400 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-paper-plane text-xl"></i>
                     </div>
-                    <span class="text-2xl font-black tracking-tight text-white">Pulse<span class="text-blue-400">Trips</span></span>
+                    <span class="text-2xl font-black tracking-tight text-white">Pulse<span class="text-indigo-400">Trips</span></span>
                 </a>
 
-                <!-- Navigation Menu (Top 10 + Others Dropdown) -->
-                <nav class="hidden xl:flex items-center space-x-1 text-xs font-semibold text-slate-300">
-                    <a href="#hotels" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Hotels</a>
-                    <a href="#resorts" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Resorts</a>
-                    <a href="#villas" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Villas</a>
-                    <a href="#apartments" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Apartments</a>
-                    <a href="#luxury" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Luxury Stays</a>
-                    <a href="#beach" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Beach Resorts</a>
-                    <a href="#cabins" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Cabins</a>
-                    <a href="#glamping" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Glamping</a>
-                    <a href="#hostels" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Hostels</a>
-                    <a href="#budget" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition">Budget Stays</a>
-
-                    <!-- Others Dropdown -->
-                    <div class="relative group">
-                        <button class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5 focus:outline-none">
-                            <span>Others</span>
-                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
-                        </button>
-                        <div class="absolute right-0 mt-1 w-52 bg-slate-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/80 py-2 hidden group-hover:block transition-all duration-200">
-                            <a href="#motels" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Motels</a>
-                            <a href="#bed-breakfast" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Bed & Breakfast</a>
-                            <a href="#vacation-homes" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Vacation Homes</a>
-                            <a href="#guesthouses" class="block px-4 py-2.5 text-slate-300 hover:bg-blue-600 hover:text-white transition rounded-lg mx-1">Guesthouses</a>
-                        </div>
-                    </div>
+                <!-- Nav Menu -->
+                <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-300">
+                    <a href="#flights" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/80 transition">Flights</a>
+                    <a href="#esim" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/80 transition">Travel eSIM</a>
+                    <a href="#rentals" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/80 transition">Car Rentals</a>
+                    <a href="#transfers" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/80 transition">Transfers</a>
+                    <a href="#activities" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/80 transition">Tours & Tickets</a>
+                    <a href="#protection" class="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/80 transition">Insurance & Claims</a>
                 </nav>
 
-                <!-- Search Deals Header CTA Button -->
+                <!-- Header CTA Button -->
                 <div>
-                    <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/25 transition duration-200 flex items-center space-x-2 transform hover:-translate-y-0.5">
+                    <a href="https://aviasales.tpk.ro/x8Qnam0E" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/30 transition duration-300 flex items-center space-x-2 transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                        <span>Find Accommodation</span>
+                        <span>Search Cheap Flights</span>
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Hero Banner Section -->
+    <!-- Hero Section -->
     <main class="flex-grow">
-        <section class="hero-bg py-24 md:py-32 px-4 relative flex items-center justify-center">
-            <div class="max-w-4xl mx-auto text-center">
-                <span class="inline-flex items-center space-x-2 bg-blue-500/20 text-blue-300 border border-blue-400/30 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold mb-6 backdrop-blur-md">
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <span>Verified Accommodation Recommendations</span>
+        <section class="hero-bg py-24 lg:py-32 px-4 relative">
+            <div class="max-w-5xl mx-auto text-center">
+                <span class="inline-flex items-center space-x-2 bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-md">
+                    <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                    <span>All-In-One Smart Travel Booking Engine</span>
                 </span>
-                <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight mb-6">
-                    Find & Book Unforgettable Stays Worldwide
+                
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight mb-8">
+                    Plan Your Next Trip With <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-blue-400 to-emerald-400">Zero Hassle</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Compare luxury hotels, cozy beachfront resorts, budget stays, and private villas with instant booking availability.
+                
+                <p class="text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+                    Find cheap airfares, get instant global eSIM data plans, book reliable rental cars, and skip long queues for tour tickets worldwide.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-xl text-base shadow-xl shadow-blue-600/30 transition duration-200 flex items-center justify-center space-x-3">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        <span>Search Booking Deals</span>
-                    </a>
+
+                <!-- Quick Action Hub -->
+                <div class="glass-card p-4 sm:p-6 rounded-3xl max-w-4xl mx-auto shadow-2xl">
+                    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Choose Your Service</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <a href="https://aviasales.tpk.ro/x8Qnam0E" target="_blank" class="bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/30 text-white p-3.5 rounded-2xl font-semibold text-sm transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-plane text-indigo-400"></i>
+                            <span>Flights</span>
+                        </a>
+                        <a href="https://airalo.tpk.ro/WZs9mIjC" target="_blank" class="bg-blue-600/30 hover:bg-blue-600/50 border border-blue-500/30 text-white p-3.5 rounded-2xl font-semibold text-sm transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-sim-card text-blue-400"></i>
+                            <span>eSIM Data</span>
+                        </a>
+                        <a href="https://localrent.tpk.ro/tfRLrdUK" target="_blank" class="bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/30 text-white p-3.5 rounded-2xl font-semibold text-sm transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-car text-emerald-400"></i>
+                            <span>Car Rental</span>
+                        </a>
+                        <a href="https://klook.tpk.ro/Z4wQQi5n" target="_blank" class="bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/30 text-white p-3.5 rounded-2xl font-semibold text-sm transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-ticket text-purple-400"></i>
+                            <span>Attractions</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Categories & Accommodation Showcase -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-slate-900">Featured Categories</h2>
-                <p class="text-slate-500 mt-2">Explore handpicked accommodation options tailored to your travel needs</p>
+        <!-- 1. Flights Section -->
+        <section id="flights" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-indigo-400 font-bold uppercase text-xs tracking-widest">Air Travel</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Flight Search & Price Comparison</h2>
+                </div>
+                <p class="text-slate-400 text-sm mt-2 md:mt-0">Compare 1,000+ airlines to find cheap flight deals.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Hotels" class="w-full h-full object-cover">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Aviasales -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-indigo-500/50 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-plane-departure"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Aviasales Flight Search</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Find low-cost flights, compare ticket prices across hundreds of airlines and travel agencies globally without extra booking fees.</p>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Luxury Hotels</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Handpicked city hotels with premium comfort and amenities.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
+                    <a href="https://aviasales.tpk.ro/x8Qnam0E" target="_blank" class="w-full bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 text-white font-bold py-3.5 px-6 rounded-2xl text-center text-sm shadow-lg shadow-indigo-500/20 transition flex items-center justify-center space-x-2">
+                        <span>Find Flights on Aviasales</span>
+                        <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Kiwi.com -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-indigo-500/50 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Kiwi.com Travel Deals</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Unlock unique virtual interlining flight routes, cheap budget airline connections, and flexible travel itineraries worldwide.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="https://kiwi.tpk.ro/NsxwLSqE" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-3 px-6 rounded-2xl text-center text-sm transition flex items-center justify-center space-x-2">
+                            <span>Book Route on Kiwi.com</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="https://tpk.ro/lVzcvG4W" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-3 px-6 rounded-2xl text-center text-sm transition flex items-center justify-center space-x-2">
+                            <span>Explore Kiwi Flight Deals</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Resorts" class="w-full h-full object-cover">
+        <!-- 2. eSIM Section -->
+        <section id="esim" class="bg-slate-900/60 border-y border-slate-800/80 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-blue-400 font-bold uppercase text-xs tracking-widest">Connectivity</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">International Travel eSIMs</h2>
+                    <p class="text-slate-400 text-sm mt-3">Stay connected everywhere without paying exorbitant roaming fees.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- Airalo -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center hover:border-blue-500/50 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Airalo</h4>
+                        <p class="text-slate-400 text-xs mb-6">Top choice for 200+ countries.</p>
+                        <a href="https://airalo.tpk.ro/WZs9mIjC" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs block transition">Get Airalo eSIM</a>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Beach Resorts</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Relaxing waterfront stays and high-end seaside holiday resorts.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+
+                    <!-- Saily -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center hover:border-blue-500/50 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Saily eSIM</h4>
+                        <p class="text-slate-400 text-xs mb-6">Fast 5G secure data plans.</p>
+                        <div class="space-y-2">
+                            <a href="https://saily.tpk.ro/Ig3F3c2u" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-xs block transition">Saily Plan 1</a>
+                            <a href="https://saily.tpk.ro/zI1L6zK9" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 rounded-xl text-xs block transition">Saily Plan 2</a>
+                        </div>
+                    </div>
+
+                    <!-- Yesim -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center hover:border-blue-500/50 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Yesim</h4>
+                        <p class="text-slate-400 text-xs mb-6">Unlimited data options.</p>
+                        <div class="space-y-2">
+                            <a href="https://yesim.tpk.ro/uJFwwMFq" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-xs block transition">Yesim Plan 1</a>
+                            <a href="https://yesim.tpk.ro/BksUZjWE" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 rounded-xl text-xs block transition">Yesim Plan 2</a>
+                        </div>
+                    </div>
+
+                    <!-- GigSky -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center hover:border-blue-500/50 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-tower-cell"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">GigSky</h4>
+                        <p class="text-slate-400 text-xs mb-6">Cruises & regional data.</p>
+                        <a href="https://gigsky.tpk.ro/cU1Ncgpb" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs block transition">Get GigSky eSIM</a>
+                    </div>
+
+                    <!-- Drimsim -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center hover:border-blue-500/50 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-sim-card"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Drimsim</h4>
+                        <p class="text-slate-400 text-xs mb-6">Universal SIM card.</p>
+                        <a href="https://drimsim.tpk.ro/kuWbIfDS" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs block transition">Get Drimsim SIM</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Car Rentals Section -->
+        <section id="rentals" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-emerald-400 font-bold uppercase text-xs tracking-widest">Self Drive</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Car Rentals & Vehicle Hire</h2>
+                </div>
+                <p class="text-slate-400 text-sm mt-2 md:mt-0">Book reliable cars at transparent prices.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Localrent -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Localrent</h3>
+                        <p class="text-slate-400 text-sm mb-6">Book rental cars directly from trusted local agencies at low deposit rates.</p>
+                    </div>
+                    <a href="https://localrent.tpk.ro/tfRLrdUK" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-center text-sm block transition">Book Localrent Car</a>
+                </div>
+
+                <!-- QEEQ -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">QEEQ Car Rental</h3>
+                        <p class="text-slate-400 text-sm mb-6">Compare prices across 7 million rental cars in 200+ countries.</p>
+                    </div>
+                    <a href="https://qeeq.tpk.ro/fmilQ9oF" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-center text-sm block transition">Search QEEQ Rentals</a>
+                </div>
+
+                <!-- AutoEurope -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fa-solid fa-van-shuttle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">AutoEurope</h3>
+                        <p class="text-slate-400 text-sm mb-6">Guaranteed best rates on European & worldwide car rentals.</p>
+                    </div>
+                    <a href="https://autoeurope.tpk.ro/Bi8gkZ65" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-center text-sm block transition">Book AutoEurope</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Transfers Section -->
+        <section id="transfers" class="bg-slate-900/60 border-y border-slate-800/80 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-purple-400 font-bold uppercase text-xs tracking-widest">Door-to-Door</span>
+                        <h2 class="text-3xl font-extrabold text-white mt-1">Airport Transfers & Taxi Pickups</h2>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-2 md:mt-0">Pre-book stress-free rides to and from airports.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Kiwitaxi -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-purple-500/50 transition flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                                <i class="fa-solid fa-taxi"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Kiwitaxi Transfers</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Personal driver waiting at arrival hall with nameplate. Fixed prices and zero hidden fees.</p>
+                        </div>
+                        <a href="https://kiwitaxi.tpk.ro/W73aadbr" target="_blank" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 px-6 rounded-2xl text-center text-sm block transition">Book Kiwitaxi Airport Transfer</a>
+                    </div>
+
+                    <!-- GetTransfer -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-purple-500/50 transition flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                                <i class="fa-solid fa-car-rear"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">GetTransfer Rides</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Book private driver services, intercity rides, and luxury limousine transfers worldwide.</p>
+                        </div>
+                        <a href="https://gettransfer.tpk.ro/sdoNOlXV" target="_blank" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 px-6 rounded-2xl text-center text-sm block transition">Book GetTransfer Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Tours & Tickets Section -->
+        <section id="activities" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-yellow-400 font-bold uppercase text-xs tracking-widest">Experiences</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Attraction Tickets & Audio Guides</h2>
+                </div>
+                <p class="text-slate-400 text-sm mt-2 md:mt-0">Book museum passes, day trips, and guided tours.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tiqets -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-yellow-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-ticket"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Tiqets Pass</h4>
+                        <p class="text-slate-400 text-xs mb-6">Skip-the-line instant museum & venue tickets.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <a href="https://tiqets.tpk.ro/zkhdcDuk" target="_blank" class="w-full bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-2 rounded-xl text-xs block text-center transition">Tiqets Option 1</a>
+                        <a href="https://tiqets.tpk.ro/ZoWpBwvB" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 rounded-xl text-xs block text-center transition">Tiqets Option 2</a>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Villas" class="w-full h-full object-cover">
+                <!-- Klook -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-yellow-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Klook Tours</h4>
+                        <p class="text-slate-400 text-xs mb-6">Theme parks, day trips, and outdoor activities.</p>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Private Villas</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Spacious holiday houses ideal for group travel and families.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+                    <div class="space-y-2">
+                        <a href="https://klook.tpk.ro/Z4wQQi5n" target="_blank" class="w-full bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-2 rounded-xl text-xs block text-center transition">Klook Activities 1</a>
+                        <a href="https://klook.tpk.ro/TmmM5wxy" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 rounded-xl text-xs block text-center transition">Klook Activities 2</a>
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80" alt="Cabins" class="w-full h-full object-cover">
+                <!-- KKday -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-yellow-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">KKday Deals</h4>
+                        <p class="text-slate-400 text-xs mb-6">Authentic travel experiences & local tours.</p>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Cabins & Glamping</h3>
-                        <p class="text-slate-500 text-sm mb-6 flex-grow">Unique nature getaways with serene views and comfort.</p>
-                        <a href="https://pulsetrips.com" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-50 hover:bg-blue-50 text-blue-600 font-bold py-2.5 px-4 rounded-xl text-center text-sm transition flex items-center justify-center space-x-2 border border-slate-100">
-                            <span>View Availability</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+                    <a href="https://kkday.tpk.ro/In1afxxa" target="_blank" class="w-full bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs block text-center transition">Browse KKday Tours</a>
+                </div>
+
+                <!-- WeGoTrip -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:border-yellow-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-headphones"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">WeGoTrip</h4>
+                        <p class="text-slate-400 text-xs mb-6">Self-guided audio tours on your phone.</p>
+                    </div>
+                    <a href="https://wegotrip.tpk.ro/nNiUGEz2" target="_blank" class="w-full bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs block text-center transition">Get Audio Tours</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Protection & Insurance Section -->
+        <section id="protection" class="bg-slate-900/60 border-t border-slate-800/80 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-red-400 font-bold uppercase text-xs tracking-widest">Peace of Mind</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Travel Insurance & Flight Claims</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- AirHelp -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-red-500/50 transition flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-red-500/10 text-red-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                                <i class="fa-solid fa-plane-slash"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">AirHelp Compensation</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Flight delayed or cancelled? Claim up to $700 in flight disruption compensation instantly.</p>
+                        </div>
+                        <a href="https://airhelp.tpk.ro/GJreOSXw" target="_blank" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3.5 px-6 rounded-2xl text-center text-sm block transition">Claim Compensation Now</a>
+                    </div>
+
+                    <!-- EKTA Traveling -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 text-xl">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">EKTA Travel Insurance</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Comprehensive international travel & medical insurance coverage for worldwide trips.</p>
+                        </div>
+                        <a href="https://ektatraveling.tpk.ro/IJTELoAM" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-2xl text-center text-sm block transition">Get Travel Insurance</a>
                     </div>
                 </div>
             </div>
@@ -189,14 +445,16 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
             <div class="flex items-center justify-center space-x-2 text-white text-xl font-bold">
-                <i class="fa-solid fa-plane-departure text-blue-500"></i>
+                <div class="w-8 h-8 bg-indigo-500 rounded-xl flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
                 <span>PulseTrips</span>
             </div>
             <p class="text-sm text-slate-500 max-w-md mx-auto">
-                PulseTrips is a travel recommendation portal helping travelers discover curated hotels, resorts, and stays globally.
+                PulseTrips connects global travelers with verified flights, travel eSIMs, car rentals, and tour attractions worldwide.
             </p>
             <div class="text-xs text-slate-600 border-t border-slate-800/80 pt-6">
                 &copy; 2026 PulseTrips. All rights reserved.
