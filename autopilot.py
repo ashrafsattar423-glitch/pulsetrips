@@ -43,13 +43,12 @@ def generate_gemini_content(location):
     Keep the tone exciting and concise for travel enthusiasts.
     """
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.6-flash",
         contents=prompt
     )
     return response.text
 
 def generate_landing_page_html(location, content):
-    # Convert newlines to HTML break tags safely outside f-string
     formatted_content = content.replace('\n', '<br>')
     
     html_template = f"""<!DOCTYPE html>
@@ -82,7 +81,6 @@ def push_to_github(location, html_content):
         "Accept": "application/vnd.github.v3+json"
     }
 
-    # Check if file exists to get SHA
     get_res = requests.get(url, headers=headers)
     sha = get_res.json().get('sha') if get_res.status_code == 200 else None
 
