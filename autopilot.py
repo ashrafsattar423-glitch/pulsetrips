@@ -49,6 +49,9 @@ def generate_gemini_content(location):
     return response.text
 
 def generate_landing_page_html(location, content):
+    # Convert newlines to HTML break tags safely outside f-string
+    formatted_content = content.replace('\n', '<br>')
+    
     html_template = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +67,7 @@ def generate_landing_page_html(location, content):
 <body>
     <h1>Travel Guide: {location}</h1>
     <div class="content">
-        {content.replace('\n', '<br>')}
+        {formatted_content}
     </div>
 </body>
 </html>"""
