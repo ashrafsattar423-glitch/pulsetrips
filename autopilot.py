@@ -5,10 +5,10 @@ import random
 import requests
 import google.generativeai as genai
 
-# Configuration
+# Configuration (Supports both variable names)
 PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL")
+MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL") or os.getenv("WEBHOOK_URL")
 
 genai.configure(api_key=GEMINI_API_KEY)
 
@@ -33,22 +33,28 @@ def clean_text(text):
 def get_pexels_image(query):
     headers = {"Authorization": PEXELS_API_KEY}
     url = f"https://api.pexels.com/v1/search?query={query}&per_page=1"
-    res = requests.get(url, headers=headers).json()
-    if res.get("photos"):
-        return res["photos"][0]["src"]["large"]
+    try:
+        res = requests.get(url, headers=headers).json()
+        if res.get("photos"):
+            return res["photos"][0]["src"]["large"]
+    except Exception as e:
+        print(f"Pexels error: {e}")
     return "https://images.pexels.com/photos/386009/pexels-photo-386009.jpeg"
 
 def generate_content(destination):
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    # Updated model string format to ensure compatibility
+    model = genai.GenerativeModel("models/gemini-1.5-flash")
     prompt = f"Create a short travel guide for {destination}. Return ONLY JSON with keys: 'title', 'description', 'slug'."
-    res = model.generate_content(prompt)
     
-    # Simple JSON Parsing
-    text = res.text
-    json_match = re.search(r'\{.*\}', text, re.DOTALL)
-    if json_match:
-        data = json.loads(json_match.group())
-        return data["title"], data["description"], data["slug"]
+    try:
+        res = model.generate_content(prompt)
+        text = res.text
+        json_match = re.search(r'\{.*\}', text, re.DOTALL)
+        if json_match:
+            data = json.loads(json_match.group())
+            return data["title"], data["description"], data["slug"]
+    except Exception as e:
+        print(f"Gemini API Error: {e}")
     
     slug = destination.lower().replace(",", "").replace(" ", "-")
     return f"Explore {destination}", f"Discover the best of {destination}.", slug
@@ -107,6 +113,9 @@ def build_html_page(title, description, image_url, destination, slug):
     return f"https://pulsetrips.com/destinations/{slug}.html"
 
 def send_to_make(title, description, image_url, page_url):
+    if not MAKE_WEBHOOK_URL:
+        print("Webhook URL missing, skipping Make.com call")
+        return
     payload = {
         "title": title,
         "description": description,
