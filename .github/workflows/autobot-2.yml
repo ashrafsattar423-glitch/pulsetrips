@@ -1,33 +1,31 @@
-name: autobot-2
+name: Travel Autopilot Pipeline
 
 on:
-  schedule:
-    - cron: '0 9 * * *'
   workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
 
 jobs:
   run-autopilot:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out Repository
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests google-genai
+      - name: Install Required Packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-generativeai requests
 
-    - name: Run Autopilot Script
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-        BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
-        BUFFER_PROFILE_ID: ${{ secrets.BUFFER_PROFILE_ID }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: python autopilot.py
+      - name: Run Autopilot Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: python autopilot.py
