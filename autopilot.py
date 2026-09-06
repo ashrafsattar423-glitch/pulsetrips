@@ -106,14 +106,16 @@ def push_to_github(location, html_content):
 
 def schedule_buffer_post(landing_url, image_url, text):
     url = "https://api.bufferapp.com/1/updates/create.json"
+    headers = {
+        "Authorization": f"Bearer {BUFFER_API_KEY}"
+    }
     payload = {
-        "access_token": BUFFER_API_KEY,
         "profile_ids[]": BUFFER_PROFILE_ID,
         "text": f"{text}\n\nRead full travel guide here: {landing_url}",
         "media[photo]": image_url,
         "media[link]": landing_url
     }
-    res = requests.post(url, data=payload)
+    res = requests.post(url, headers=headers, data=payload)
     if res.status_code == 200:
         print("[+] Pinterest Pin scheduled on Buffer successfully!")
     else:
