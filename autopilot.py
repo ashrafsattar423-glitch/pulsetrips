@@ -19,11 +19,15 @@ print(f"--- Running Autopilot for Location: {location} ---")
 print("[*] Fetching HD image from Pexels...")
 headers = {"Authorization": PEXELS_API_KEY}
 pexels_url = f"https://api.pexels.com/v1/search?query={location}&per_page=1"
-pexels_res = requests.get(pexels_url, headers=headers).json()
 
-if pexels_res.get("photos"):
-    image_url = pexels_res["photos"][0]["src"]["large"]
-else:
+try:
+    pexels_res = requests.get(pexels_url, headers=headers).json()
+    if pexels_res.get("photos"):
+        image_url = pexels_res["photos"][0]["src"]["large"]
+    else:
+        image_url = "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg"
+except Exception as e:
+    print(f"[-] Pexels Error: {e}")
     image_url = "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg"
 
 # --- 3. GENERATE TRAVEL CONTENT WITH GEMINI AI ---
@@ -95,10 +99,13 @@ else:
         "description": description,
         "link": landing_page_link
     }
-    res = requests.post(WEBHOOK_URL, json=payload)
-    if res.status_code == 200:
-        print("[+] Successfully sent data payload to Make.com Webhook!")
-    else:
-        print(f"[-] Webhook Failed with status code: {res.status_code}")
+    try:
+        res = requests.post(WEBHOOK_URL, json=payload)
+        if res.status_code == 200:
+            print("[+] Successfully sent data payload to Make.com Webhook!")
+        else:
+            print(f"[-] Webhook Failed with status code: {res.status_code}")
+    except Exception as e:
+        print(f"[-] Webhook Request Error: {e}")
 
 print("[+] Autopilot Workflow Completed Successfully!")
