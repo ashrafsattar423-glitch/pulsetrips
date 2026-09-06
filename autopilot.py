@@ -1,6 +1,8 @@
 import os
 import random
 import requests
+import json
+import base64
 from google import genai
 
 # ---------------------------------------------------------
@@ -8,8 +10,7 @@ from google import genai
 # ---------------------------------------------------------
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
-BUFFER_API_KEY = os.getenv("BUFFER_API_KEY")
-BUFFER_PROFILE_ID = os.getenv("BUFFER_PROFILE_ID")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 GITHUB_TOKEN = os.getenv("GH_TOKEN")
 GITHUB_REPO = "ashrafsattar423-glitch/pulsetrips"
 
@@ -25,28 +26,39 @@ TARGET_LOCATIONS = [
 # 2. HELPER FUNCTIONS
 # ---------------------------------------------------------
 def get_pexels_image(query):
+    if not PEXELS_API_KEY:
+        return "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg"
+        
     headers = {"Authorization": PEXELS_API_KEY}
     url = f"https://api.pexels.com/v1/search?query={query}&per_page=1"
-    res = requests.get(url, headers=headers)
-    if res.status_code == 200 and res.json().get('photos'):
-        return res.json()['photos'][0]['src']['large']
+    try:
+        res = requests.get(url, headers=headers, timeout=15)
+        if res.status_code == 200 and res.json().get('photos'):
+            return res.json()['photos'][0]['src']['large']
+    except Exception as e:
+        print(f"[-] Pexels Fetch Error: {e}")
+        
     return "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg"
 
 def generate_gemini_content(location):
-    client = genai.Client(api_key=GEMINI_API_KEY)
-    prompt = f"""
-    Write an engaging travel blog snippet for '{location}'. 
-    Include:
-    - 3 Must-visit places
-    - Best time to visit
-    - A quick travel tip
-    Keep the tone exciting and concise for travel enthusiasts.
-    """
-    response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=prompt
-    )
-    return response.text
+    if not GEMINI_API_KEY:
+        return f"Explore top attractions, best times to visit, and insider travel tips for {location}."
+        
+    try:
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        prompt = f"""
+        Write a brief Pinterest description for '{location}' (under 500 characters).
+        Highlight top places to visit and best time to travel. Keep it engaging.
+        """
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+        # Ensure description is strictly under 800 characters for Pinterest limits
+        return response.text[:750]
+    except Exception as e:
+        print(f"[-] Gemini API Error: {e}")
+        return f"Discover the best travel guides, itinerary tips, and places to explore in {location}."
 
 def generate_landing_page_html(location, content):
     formatted_content = content.replace('\n', '<br>')
@@ -73,6 +85,10 @@ def generate_landing_page_html(location, content):
     return html_template
 
 def push_to_github(location, html_content):
+    if not GITHUB_TOKEN:
+        print("[-] GH_TOKEN missing, skipping HTML push.")
+        return f"https://pulsetrips.com/destinations/{location.lower().replace(' ', '-').replace(',', '')}.html"
+
     filename = f"destinations/{location.lower().replace(' ', '-').replace(',', '')}.html"
     url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{filename}"
     
@@ -81,47 +97,54 @@ def push_to_github(location, html_content):
         "Accept": "application/vnd.github.v3+json"
     }
 
-    get_res = requests.get(url, headers=headers)
-    sha = get_res.json().get('sha') if get_res.status_code == 200 else None
+    try:
+        get_res = requests.get(url, headers=headers, timeout=15)
+        sha = get_res.json().get('sha') if get_res.status_code == 200 else None
 
-    import base64
-    encoded_content = base64.b64encode(html_content.encode('utf-8')).decode('utf-8')
+        encoded_content = base64.b64encode(html_content.encode('utf-8')).decode('utf-8')
+        
+        payload = {
+            "message": f"Add/Update landing page for {location}",
+            "content": encoded_content
+        }
+        if sha:
+            payload["sha"] = sha
+
+        put_res = requests.put(url, headers=headers, json=payload, timeout=15)
+        if put_res.status_code in [200, 201]:
+            clean_filename = filename.replace("destinations/", "")
+            page_url = f"https://pulsetrips.com/destinations/{clean_filename}"
+            print(f"[+] Page successfully created/updated: {page_url}")
+            return page_url
+        else:
+            print(f"[-] GitHub API Error: {put_res.status_code} - {put_res.text}")
+    except Exception as e:
+        print(f"[-] Push to GitHub Exception: {e}")
+
+    return f"https://pulsetrips.com/destinations/{location.lower().replace(' ', '-').replace(',', '')}.html"
+
+def send_to_make_webhook(landing_url, image_url, title, description):
+    if not WEBHOOK_URL:
+        print("[-] Error: WEBHOOK_URL environment variable is missing!")
+        return
+
+    payload = {
+        "image_url": image_url,
+        "title": title[:100],  # Pinterest title character limit safety
+        "description": description[:750],  # Pinterest description limit safety
+        "link": landing_url
+    }
     
-    payload = {
-        "message": f"Add/Update landing page for {location}",
-        "content": encoded_content
-    }
-    if sha:
-        payload["sha"] = sha
-
-    put_res = requests.put(url, headers=headers, json=payload)
-    if put_res.status_code in [200, 201]:
-        clean_filename = filename.replace("destinations/", "")
-        page_url = f"https://pulsetrips.com/destinations/{clean_filename}"
-        print(f"[+] Page successfully created/updated: {page_url}")
-        return page_url
-    else:
-        print(f"[-] GitHub API Error: {put_res.status_code} - {put_res.text}")
-        return None
-
-def schedule_buffer_post(landing_url, image_url, text):
-    url = "https://api.bufferapp.com/1/updates/create.json"
-    headers = {
-        "Authorization": f"Bearer {BUFFER_API_KEY}",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-    payload = {
-        "profile_ids[]": BUFFER_PROFILE_ID,
-        "text": f"{text}\n\nRead full travel guide here: {landing_url}",
-        "media[photo]": image_url,
-        "media[link]": landing_url,
-        "as_user": "true"
-    }
-    res = requests.post(url, headers=headers, data=payload)
-    if res.status_code == 200:
-        print("[+] Pinterest Pin scheduled on Buffer successfully!")
-    else:
-        print(f"[-] Buffer API Error: {res.status_code} - {res.text}")
+    headers = {"Content-Type": "application/json"}
+    
+    try:
+        res = requests.post(WEBHOOK_URL, data=json.dumps(payload), headers=headers, timeout=30)
+        if res.status_code == 200:
+            print("[+] Successfully sent data payload to Make.com Webhook!")
+        else:
+            print(f"[-] Make Webhook Error: {res.status_code} - {res.text}")
+    except Exception as e:
+        print(f"[-] Webhook Exception: {e}")
 
 # ---------------------------------------------------------
 # 3. MAIN WORKFLOW EXECUTION
@@ -140,10 +163,10 @@ def run_autopilot_task():
     html_data = generate_landing_page_html(location, content)
     landing_url = push_to_github(location, html_data)
     
-    if landing_url:
-        print("[*] Scheduling Pin on Pinterest via Buffer...")
-        schedule_buffer_post(landing_url, image_url, f"Top Things to Do in {location}")
-        print("[+] Autopilot Workflow Completed Successfully!")
+    print("[*] Sending Pin data to Make.com Webhook...")
+    pin_title = f"Top Things to Do in {location}"
+    send_to_make_webhook(landing_url, image_url, pin_title, content)
+    print("[+] Autopilot Workflow Completed Successfully!")
 
 if __name__ == "__main__":
     run_autopilot_task()
